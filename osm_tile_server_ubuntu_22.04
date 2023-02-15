@@ -66,6 +66,7 @@ EOF
 
 #Создаем директорию для юнита и конфига
 mkdir /etc/systemd/system/renderd.service.d/
+touch /etc/systemd/system/renderd.service.d/custom.conf
 cat << EOF > /etc/systemd/system/renderd.service.d/custom.conf
 [Service]
 User=osm
@@ -97,7 +98,6 @@ cd /var/www/html/
 wget https://github.com/openlayers/openlayers/releases/download/v5.3.0/v5.3.0.zip
 unzip v5.3.0.zip
 #ВАЖНО ТАКЖЕ ЗАРАНЕЕ В СКРИПТЕ УКАЗАТЬ IP СЕРВЕРА,
-rm -f index.html
 cat << EOF > index.html
 <!DOCTYPE html>
 <html style="height:100%;margin:0;padding:0;">
