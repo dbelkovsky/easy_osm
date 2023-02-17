@@ -73,8 +73,8 @@ cat << EOF > /etc/systemd/system/renderd.service.d/custom.conf
 User=osm
 EOF
 #Меняем права на директториях
-sudo chown osm /run/renderd/ -R
-sudo chown osm /var/cache/renderd/tiles/ -R
+sudo chown osm:osm /run/renderd/ -R
+sudo chown osm:osm /var/cache/renderd/tiles/ -R
 #перезагружаем сервисы
 systemctl daemon-reload
 systemctl restart renderd
