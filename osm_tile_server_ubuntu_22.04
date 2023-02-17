@@ -3,7 +3,8 @@
 #Руководство по установке OSM-tile сервера на убунту 22.04 
 #в убунту и дебиане все можно  ставить из коробки, ничего не надо собирать, компилировать. все уже готово
 # все выполняется под SUDO
-
+#vars(переменные)
+ipaddr=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
 #Установим необходимые пакеты:
 apt install screen locate libapache2-mod-tile renderd git tar unzip wget bzip2 apache2 lua5.1 mapnik-utils python3-mapnik python3-psycopg2 python3-yaml gdal-bin npm fonts-noto-cjk fonts-noto-hinted fonts-noto-unhinted fonts-unifont fonts-hanazono postgresql postgresql-contrib postgis postgresql-15-postgis-3 postgresql-15-postgis-3-scripts osm2pgsql net-tools curl
 
@@ -11,7 +12,7 @@ apt install screen locate libapache2-mod-tile renderd git tar unzip wget bzip2 a
 adduser --system --group osm #имя может быть произвольным, но нне отличимым от того, которого мы создадим позже для БД
 #Добавим АСL и доступ нашему пользователю в нужную директорию
 apt install acl
-sudo setfacl -R -m  u:bdn:rwx /home/osm/ #где bdn наш привычный пользователь(не osm)
+sudo setfacl -R -m  u:postgres:rwx /home/osm/ 
 #Далее все манипуляции будем выполнять в директори нашего пользователя
 cd /home/osm/
 #создадим пользователя и БД
@@ -41,7 +42,7 @@ carto project.mml > mapnik.xml
 #скачиваем карту в формате osm.pbf на примере Калининградской области
 wget https://download.geofabrik.de/russia/kaliningrad-latest.osm.pbf
 #производим добавление карты в БД
-sudo -u osm osm2pgsql -d gis --create --slim  -G --hstore --tag-transform-script ~osm/openstreetmap-carto/openstreetmap-carto.lua -C 2500 --number-processes 1 -S ~osm/openstreetmap-carto/openstreetmap-carto.style ~osm/Minsk.osm.pbf
+sudo -u osm osm2pgsql -d gis --create --slim  -G --hstore --tag-transform-script ~osm/openstreetmap-carto/openstreetmap-carto.lua -C 2500 --number-processes 1 -S ~osm/openstreetmap-carto/openstreetmap-carto.style ~osm/openstreetmap-carto/kaliningrad-latest.osm.pbf
 #индексируем
 sudo -u osm psql -d gis -f indexes.sql
 sudo -u osm scripts/get-external-data.py
@@ -81,10 +82,10 @@ systemctl restart apache2
 /etc/init.d/apache2 restart
 #добавляем модуль mod_tile
 a2enmod tile
-#Прописываем конфиг для apache2(ВАЖНО ЗНАТЬ IP СЕРВЕРА И ПРОПИСАТЬ ЕГО ЗАРАНЕЕ)
+#Прописываем конфиг для apache2
 cat << EOF >> /etc/apache2/sites-available/tileserver_site.conf
 <VirtualHost *:80>
-    ServerName 192.168.1.207 #это как раз он
+    ServerName $ipaddr 
     LogLevel info
     Include /etc/apache2/conf-available/renderd.conf
 
@@ -116,7 +117,7 @@ cat << EOF > index.html
 //<![CDATA[
 var map = L.map('map').setView([63, 100], 3);
 
-L.tileLayer('http://192.168.1.207/osm_tiles/{z}/{x}/{y}.png', {
+L.tileLayer('http://$ipaddr/osm_tiles/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
