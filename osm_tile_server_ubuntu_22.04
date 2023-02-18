@@ -6,7 +6,8 @@
 #vars(переменные)
 ipaddr=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
 #Установим необходимые пакеты:
-apt install screen locate libapache2-mod-tile renderd git tar unzip wget bzip2 apache2 lua5.1 mapnik-utils python3-mapnik python3-psycopg2 python3-yaml gdal-bin npm fonts-noto-cjk fonts-noto-hinted fonts-noto-unhinted fonts-unifont fonts-hanazono postgresql postgresql-contrib postgis postgresql-15-postgis-3 postgresql-15-postgis-3-scripts osm2pgsql net-tools curl
+apt update && apt upgrade
+apt install -y screen locate libapache2-mod-tile renderd git tar unzip wget bzip2 apache2 lua5.1 mapnik-utils python3-mapnik python3-psycopg2 python3-yaml gdal-bin npm fonts-noto-cjk fonts-noto-hinted fonts-noto-unhinted fonts-unifont fonts-hanazono postgresql postgresql-contrib postgis postgresql-15-postgis-3 postgresql-15-postgis-3-scripts osm2pgsql net-tools curl
 
 #создадим системного пользователя для работы рендеринга
 adduser --system --group osm #имя может быть произвольным, но нне отличимым от того, которого мы создадим позже для БД
