@@ -117,7 +117,7 @@ cat << EOF > index.html
 //<![CDATA[
 var map = L.map('map').setView([63, 100], 3);
 
-L.tileLayer('http://$ipaddr/osm_tiles/{z}/{x}/{y}.png', {
+L.tileLayer('http://$ipaddr/osm/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
