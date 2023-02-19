@@ -94,6 +94,9 @@ TILESIZE=256
 MAXZOOM=20
 EOF
 
+#Меняем дефолтного пользователя в конигураци init.d
+sed -i 's/RUNASUSER=_renderd/RUNASUSER=osm/g' /etc/init.d/renderd
+
 #правим сервис рендерД!
 cat << EOF > /usr/lib/systemd/system/renderd.service
 [Unit]
