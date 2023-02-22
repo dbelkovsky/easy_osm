@@ -131,7 +131,7 @@ sudo -u $USER scripts/get-external-data.py
 
 #устанавливаем шрифты
 scripts/get-fonts.sh
-
+cd ~$USER
 #RENDERD & MOD_TILE
 git clone -b switch2osm https://github.com/SomeoneElseOSM/mod_tile.git
 cd mod_tile
@@ -260,9 +260,6 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl restart renderd
 sudo systemctl restart apache2
-
-#добавляем модуль mod_tile
-sudo a2enmod tile
 
 #Прописываем конфиг для apache2
 cat << EOF >> /etc/apache2/sites-available/tileserver_site.conf
