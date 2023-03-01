@@ -47,7 +47,7 @@ python3-pip \
 python3-psycopg2 \
 apache2 \
 libapache2-mod-tile \
-#renderd  \ # бдем ставить руками, если ставить из пакета. то возникает проблема с работой сервиса renderd
+#renderd  \ # бдем ставить руками, если ставить из пакета, то возникает проблема с работой сервиса renderd
 libmapnik-dev \
 apache2-dev \
 autoconf \
@@ -83,17 +83,17 @@ sudo setfacl -R -m  u:$USER:rwx /home/$USER/
 #Далее все манипуляции будем выполнять в директори нашего пользователя
 cd /home/$USER/
 #создадим пользователя и БД
-sudo -u postgres -i
+#sudo -u postgres -i
 #создаем пользователя
-createuser $USER # помним про пользователя и его имя должно быть одинаковым как и системный пользователь
+sudo -u postgres createuser $USER # помним про пользователя и его имя должно быть одинаковым как и системный пользователь
 #сознаем БД
-createdb -E UTF8 -O $USER gis #gis это и есть имя БД
+sudo -u postgres createdb -E UTF8 -O $USER gis #gis это и есть имя БД
 #создаем экстеншены в БД
-psql -c "CREATE EXTENSION hstore;" -d gis
-psql -c "CREATE EXTENSION postgis;" -d gis
-psql -c "ALTER TABLE geometry_columns OWNER TO $USER;" -d gis
-psql -c "ALTER TABLE spatial_ref_sys OWNER TO $USER;" -d gis
-exit
+sudo -u postgres psql -c "CREATE EXTENSION hstore;" -d gis
+sudo -u postgres psql -c "CREATE EXTENSION postgis;" -d gis
+sudo -u postgres psql -c "ALTER TABLE geometry_columns OWNER TO $USER;" -d gis
+sudo -u postgres psql -c "ALTER TABLE spatial_ref_sys OWNER TO $USER;" -d gis
+#exit
 
 ###MAPNIK
 python3 -c "import mapnik"
@@ -114,16 +114,16 @@ wget https://download.geofabrik.de/russia/kaliningrad-latest.osm.pbf
 sudo -u $USER osm2pgsql -d gis --create --slim  -G --hstore --tag-transform-script ~$USER/openstreetmap-carto/openstreetmap-carto.lua -C 2500 --number-processes 1 -S ~$USER/openstreetmap-carto/openstreetmap-carto.style ~$USER/openstreetmap-carto/kaliningrad-latest.osm.pbf
 
 #Добавляем права на таблицы в 11 postgresql это необходимо
-sudo -u postgres -i
-psql -c "ALTER DATABASE gis OWNER TO $USER;" -d gis;
-psql -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO $USER;" -d gis;
-psql -c "grant all on planet_osm_polygon to postgres;" -d gis;
-psql -c "grant all on planet_osm_line to postgres;" -d gis;
-psql -c "grant all on planet_osm_point to postgres;" -d gis;
-psql -c "grant all on planet_osm_roads to postgres;" -d gis;
-psql -c "grant all on geometry_columns to postgres;" -d gis;
-psql -c "grant all on spatial_ref_sys to postgres;" -d gis;
-exit
+#sudo -u postgres -i
+sudo -u postgres psql -c "ALTER DATABASE gis OWNER TO $USER;" -d gis;
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO $USER;" -d gis;
+sudo -u postgres psql -c "grant all on planet_osm_polygon to postgres;" -d gis;
+sudo -u postgres psql -c "grant all on planet_osm_line to postgres;" -d gis;
+sudo -u postgres psql -c "grant all on planet_osm_point to postgres;" -d gis;
+sudo -u postgres psql -c "grant all on planet_osm_roads to postgres;" -d gis;
+sudo -u postgres psql -c "grant all on geometry_columns to postgres;" -d gis;
+sudo -u postgres psql -c "grant all on spatial_ref_sys to postgres;" -d gis;
+#exit
 
 #индексируем
 sudo -u $USER psql -d gis -f indexes.sql
