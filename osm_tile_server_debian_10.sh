@@ -173,6 +173,7 @@ sudo systemctl restart renderd
 sudo a2ensite tileserver_site.conf
 sudo systemctl reload apache2
 sudo systemctl reload apache2
+sudo systemctl restart apache2
 
 #Настройка отображения карты
 cd /var/www/
