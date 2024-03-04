@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x -e
+#set -x -e
 
 # This script for installation OSM Tile Server on Ubuntu 20.04
 
