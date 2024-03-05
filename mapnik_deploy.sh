@@ -7,13 +7,13 @@
 
 # VARS
 
-read -e -p "Enter IP ADDRESS or DNS NAME: " -i "$(curl -s https://ipecho.net/plain)" IP #its public IP
+read -e -p "Enter server IP address or FQDN: " -i "$(curl -s https://ipecho.net/plain)" IP #its public IP
 
 # If you need use it variable for local IP $(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d'/')
 
 #USER
-read -e -p "Enter username(directly "osm"): " -i "osm" USER
-read -e -p "Enter database name(directly "gis"): " -i "gis" DB
+read -e -p "Enter username(default "osm"): " -i "osm" USER
+read -e -p "Enter database name(default "gis"): " -i "gis" DB
 
 InstallPackages() {
 
