@@ -7,12 +7,13 @@
 
 # VARS
 
-IP=$(curl -s https://ipecho.net/plain) #its public IP
+read -e -p "Enter IP ADDRESS or DNS NAME: " -i "$(curl -s https://ipecho.net/plain)" IP #its public IP
 
 # If you need use it variable for local IP $(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1 -d'/')
 
-USER=osm
-DB=gis
+#USER
+read -e -p "Enter username(directly "osm"): " -i "osm" USER
+read -e -p "Enter database name(directly "gis"): " -i "gis" DB
 
 InstallPackages() {
 
@@ -58,7 +59,6 @@ InstallPackages() {
             python3-psycopg2 \
             python3-mapnik \
             apache2 \
-            libapache2-mod-tile \
             libmapnik-dev \
             apache2-dev \
             autoconf \
@@ -346,7 +346,10 @@ EOF
 
     systemctl restart apache2
     systemctl restart renderd
-    echo " check install to http://$IP "
+    sleep 10
+
+    echo " CONGRATS ALL INSTALLATIONS FINISHED!!!! "
+    echo " Please check install to link:  http://$IP "
 }
 
 InstallPackages
