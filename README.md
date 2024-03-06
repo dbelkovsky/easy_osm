@@ -225,7 +225,7 @@ sudo systemctl restart postgresql
 
 ### Create postgres user and batabase
 
-Then create user "osm" a database named "gis" and at the same time make osm as the owner of the database. Please don’t change the database name. Other tools like Renderd and Mapnik assume there’s a database named "gis".
+Then create user "osm" a database named "gis" and at the same time make "osm" as the owner of the database. Please don’t change the database name. Other tools like Renderd and Mapnik assume there’s a database named "gis".
 
 ```
 su postgres -l
@@ -233,4 +233,16 @@ su postgres -l
 createuser osm
 
 createdb -E UTF8 -O osm gis
+```
+
+Create database extentions:
+
+```
+psql -c "CREATE EXTENSION hstore;" -d gis
+
+psql -c "CREATE EXTENSION postgis;" -d gis
+
+psql -c "ALTER TABLE geometry_columns OWNER TO osm;" -d gis
+
+psql -c "ALTER TABLE spatial_ref_sys OWNER TO osm;" -d gis
 ```
