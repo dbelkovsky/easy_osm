@@ -43,3 +43,5 @@ chmod u+x mapnik_deploy.sh
 ```
 
 _First you need to make changes to the script: indicate which osm.pbf file you need to download (everything that is specified by default - String # 187 Luxembourg). The script will ask the rest of the preliminary setup questions on its own._
+
+**In a weak server configuration(2CPU, 8RAM, 30GBHDD) + map of Luxembourg, the server is ready for operation after 15 minutes it starts running the deployment [script](https://github.com/dbelkovsky/bash_scipts/blob/main/data/mapnik_deploy.sh).**
