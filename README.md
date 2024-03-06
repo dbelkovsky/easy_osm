@@ -89,7 +89,7 @@ add-apt-repository -y ppa:osmadmins/ppa
 
 apt update
 
-apt install --no-install-recommends -y creen locate git tar unzip bzip2 net-tools postgis-doc postgis postgresql-15 postgresql-client-15 postgresql-client-common postgresql-15-postgis-3 postgresql-15-postgis-3-dbgsym postgresql-15-postgis-3-scripts osm2pgsql gdal-bin mapnik-utils python3-pip python3-yaml python3-pretty-yaml python3-psycopg2 python3-mapnik apache2 libmapnik-dev apache2-dev autoconf libtool libxml2-dev libbz2-dev libgeos-dev libgeos++-dev libproj-dev build-essential libcairo2-dev libcurl4-gnutls-dev libglib2.0-dev libiniparser-dev libmemcached-dev librados-dev fonts-dejavu fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-hinted fonts-noto-unhinted ttf-unifont acl
+apt install --no-install-recommends -y screen locate git tar unzip bzip2 net-tools postgis-doc postgis postgresql-15 postgresql-client-15 postgresql-client-common postgresql-15-postgis-3 postgresql-15-postgis-3-dbgsym postgresql-15-postgis-3-scripts osm2pgsql gdal-bin mapnik-utils python3-pip python3-yaml python3-pretty-yaml python3-psycopg2 python3-mapnik apache2 libmapnik-dev apache2-dev autoconf libtool libxml2-dev libbz2-dev libgeos-dev libgeos++-dev libproj-dev build-essential libcairo2-dev libcurl4-gnutls-dev libglib2.0-dev libiniparser-dev libmemcached-dev librados-dev fonts-dejavu fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-hinted fonts-noto-unhinted ttf-unifont acl
 ```
 
 ### Postgers/postGIS configurations
