@@ -44,4 +44,26 @@ chmod u+x mapnik_deploy.sh
 
 _First you need to make changes to the script: indicate which osm.pbf file you need to download (everything that is specified by default - String # 187 Luxembourg). The script will ask the rest of the preliminary setup questions on its own._
 
-**In a weak server configuration(2CPU, 8RAM, 30GBHDD) + map of Luxembourg, the server is ready for operation after 15 minutes it starts running the deployment [script](https://github.com/dbelkovsky/bash_scipts/blob/main/data/mapnik_deploy.sh).**
+**In a weak server configuration(2CPU, 8RAM, 30GbHDD) + map of Luxembourg, the server is ready for operation after 15 minutes it starts running the deployment [script](https://github.com/dbelkovsky/bash_scipts/blob/main/data/mapnik_deploy.sh).**
+
+## Manual installation
+
+### Create system user
+
+This guide assumes that you run everything from a non-root user via “sudo”. The non-root username used by default below is “osm” - you can create that locally if you want, or edit scripts to refer to a different username if you want. If you do create the “osm” user you’ll need to add it to the group of users that can sudo to root. From your normal non-root user account:
+
+```
+sudo -i
+adduser --system --group osm
+usermod -aG sudo osm
+exit
+```
+
+### Update system and install packages
+
+To update the system:
+
+```
+sudo apt-get update
+sudo apt-get -y upgrade
+```
