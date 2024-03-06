@@ -42,4 +42,4 @@ chmod u+x mapnik_deploy.sh
 ./mapnik_deploy.sh
 ```
 
-_First you need to make changes to the script: indicate which osm.pbf file you need to download, everything that is specified by default (String # 187 Luxembourg). The script will ask the rest of the preliminary setup questions on its own._
+_First you need to make changes to the script: indicate which osm.pbf file you need to download (everything that is specified by default - String # 187 Luxembourg). The script will ask the rest of the preliminary setup questions on its own._
