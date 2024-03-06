@@ -38,7 +38,9 @@ To get started quickly, just download the [script](https://github.com/dbelkovsky
 
 ```
 sudo -i
+
 chmod u+x mapnik_deploy.sh
+
 ./mapnik_deploy.sh
 ```
 
@@ -54,8 +56,11 @@ This guide assumes that you run everything from a non-root user via “sudo”. 
 
 ```
 sudo -i
+
 adduser --system --group osm
+
 usermod -aG sudo osm
+
 exit
 ```
 
@@ -65,17 +70,25 @@ To update the system and Install essential tools:
 
 ```
 sudo apt-get update
+
 sudo apt-get -y upgrade
-apt install -y wget software-properties-common dirmngr ca-certificates apt-transport-https lsb-release curl
+
+apt install -y wget software-properties-common dirmngr ca-certificates
+
+apt-transport-https lsb-release curl
 ```
 
 Add repos and install all packages:
 
 ```
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+
 echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" | tee /etc/apt/sources.list.d/postgresql-pgdg.list
+
 add-apt-repository -y ppa:osmadmins/ppa
+
 apt update
+
 apt install --no-install-recommends -y creen locate git tar unzip bzip2 net-tools postgis-doc postgis postgresql-15 postgresql-client-15 postgresql-client-common postgresql-15-postgis-3 postgresql-15-postgis-3-dbgsym postgresql-15-postgis-3-scripts osm2pgsql gdal-bin mapnik-utils python3-pip python3-yaml python3-pretty-yaml python3-psycopg2 python3-mapnik apache2 libmapnik-dev apache2-dev autoconf libtool libxml2-dev libbz2-dev libgeos-dev libgeos++-dev libproj-dev build-essential libcairo2-dev libcurl4-gnutls-dev libglib2.0-dev libiniparser-dev libmemcached-dev librados-dev fonts-dejavu fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-hinted fonts-noto-unhinted ttf-unifont acl
 ```
 
@@ -208,4 +221,16 @@ Restart PostgreSQL to save all changes and use huge pages.
 
 ```
 sudo systemctl restart postgresql
+```
+
+### Create postgres user and batabase
+
+Then create user "osm" a database named "gis" and at the same time make osm as the owner of the database. Please don’t change the database name. Other tools like Renderd and Mapnik assume there’s a database named "gis".
+
+```
+su postgres -l
+
+createuser osm
+
+createdb -E UTF8 -O osm gis
 ```
