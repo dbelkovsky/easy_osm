@@ -78,3 +78,134 @@ add-apt-repository -y ppa:osmadmins/ppa
 apt update
 apt install --no-install-recommends -y creen locate git tar unzip bzip2 net-tools postgis-doc postgis postgresql-15 postgresql-client-15 postgresql-client-common postgresql-15-postgis-3 postgresql-15-postgis-3-dbgsym postgresql-15-postgis-3-scripts osm2pgsql gdal-bin mapnik-utils python3-pip python3-yaml python3-pretty-yaml python3-psycopg2 python3-mapnik apache2 libmapnik-dev apache2-dev autoconf libtool libxml2-dev libbz2-dev libgeos-dev libgeos++-dev libproj-dev build-essential libcairo2-dev libcurl4-gnutls-dev libglib2.0-dev libiniparser-dev libmemcached-dev librados-dev fonts-dejavu fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-hinted fonts-noto-unhinted ttf-unifont acl
 ```
+
+### Postgers/postGIS configurations
+
+During a large installation of packages, we installed and launched the Postgres server and the geospatial extension PostGIS.
+
+_PostgreSQL database server will automatically start and listens on 127.0.0.1:5432. The postgres user will be created on the OS during the installation process. It’s the super user for PostgreSQL database server. By default, this user has no password and there’s no need to set one because you can use sudo to switch to the postgres user and log into PostgreSQL server._
+
+#### Optimize PostgreSQL Server Performance
+
+The import process can take some time. To speed up this process, we can tune some PostgreSQL server settings to improve performance. Edit PostgreSQL main configuration file.
+
+```
+sudo vi /etc/postgresql/15/main/postgresql.conf
+```
+
+First, we should change the value of `hared_buffer`. The default setting is:
+
+```
+shared_buffers = 128MB
+```
+
+This is too small. The rule of thumb is to set it to 25% of your total RAM (excluding swap space). For example, my VPS has 60G RAM, so I set it to:
+
+```
+shared_buffers = 15GB
+```
+
+Find the following line:
+
+```
+#work_mem = 4MB
+#maintenance_work_mem = 64MB
+```
+
+Again, the value is too small. I use the following settings:
+
+```
+work_mem = 1GB
+maintenance_work_mem = 8GB
+```
+
+Then find the following line:
+
+```
+#effective_cache_size = 4GB
+```
+
+If you have lots of RAM like I do, you can set a higher value for the effective_cache_size like 20G:
+
+```
+effective_cache_size = 20GB
+```
+
+Save and close the file.
+
+By default, PostgreSQL would try to use huge pages in RAM. However, Linux by default does not allocate huge pages. Check the process ID of PostgreSQL.
+
+```
+sudo head -1 /var/lib/postgresql/15/main/postmaster.pid
+```
+
+Sample output:
+
+```
+7031
+```
+
+Then check the VmPeak value of this process ID:
+
+```
+grep ^VmPeak /proc/7031/status
+```
+
+Sample output:
+
+```
+VmPeak: 16282784 kB
+```
+
+This is the peak memory size that will be used by PostgreSQL. Now check the size of huge page in Linux:
+
+```
+cat /proc/meminfo | grep -i huge
+
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+```
+
+**We can calculate how many huge pages we need. Divide the VmPeak value by the size of huge page: 16282784 kB / 2048 kB = 7950. Then we need to edit the sysctl files to change Linux kernel parameters. Instead of editing the /etc/sysctl.conf file, we create a custom config file, so your custom configurations won’t be overwritten when upgrading software packages:**
+
+```
+sudo touch /etc/sysctl.d/60-custom.conf
+```
+
+Then run the following command to allocate 7950 huge pages:
+
+```
+echo "vm.nr_hugepages = 7950" | sudo tee -a /etc/sysctl.d/60-custom.conf
+```
+
+Save and close the file. Apply the changes:
+
+```
+sudo sysctl -p /etc/sysctl.d/60-custom.conf
+```
+
+If you check the meminfo again:
+
+```
+cat /proc/meminfo | grep -i huge
+
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+HugePages_Total:    7950
+HugePages_Free:     7950
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+```
+
+Restart PostgreSQL to save all changes and use huge pages.
+
+```
+sudo systemctl restart postgresql
+```
