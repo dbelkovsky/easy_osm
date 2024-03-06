@@ -246,3 +246,9 @@ psql -c "ALTER TABLE geometry_columns OWNER TO osm;" -d gis
 
 psql -c "ALTER TABLE spatial_ref_sys OWNER TO osm;" -d gis
 ```
+
+Exit from the postgres user:
+
+```
+exit
+```
