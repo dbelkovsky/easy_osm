@@ -150,11 +150,9 @@ By default, PostgreSQL would try to use huge pages in RAM. However, Linux by def
 
 ```
 sudo head -1 /var/lib/postgresql/15/main/postmaster.pid
-```
 
 Sample output:
 
-```
 7031
 ```
 
@@ -162,11 +160,9 @@ Then check the VmPeak value of this process ID:
 
 ```
 grep ^VmPeak /proc/7031/status
-```
 
 Sample output:
 
-```
 VmPeak: 16282784 kB
 ```
 

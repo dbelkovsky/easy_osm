@@ -95,7 +95,6 @@ CreateUser() {
 
     adduser --system --group $USER #The name can be arbitrary but indistinguishable from the one we will create later for the database
     usermod -aG sudo $USER
-    #Add АСL and access for postgres user
 
 }
 
