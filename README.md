@@ -272,3 +272,25 @@ apt-get install --yes nodejs
 git clone https://github.com/gravitystorm/openstreetmap-carto
 npm install -g carto
 ```
+
+### Last preparations to import map into DB
+
+We need to download map in working directory(for exmple is Luxembourg map):
+
+```
+cd /home/osm/openstreetmap-carto/
+wget -P /home/osm/openstreetmap-carto/ https://download.geofabrik.de/europe/luxembourg-latest.osm.pbf
+```
+
+After downloading change ownet to work directory:
+
+```
+chown osm:osm -R /home/osm/
+```
+
+And grant privelegues to `postgres` user to all files in work folder:
+
+```
+cd /home/osm/
+    setfacl -R -m u:postgres:rwx /home/osm/
+```
