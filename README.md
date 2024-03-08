@@ -291,6 +291,5 @@ chown osm:osm -R /home/osm/
 And grant privelegues to `postgres` user to all files in work folder:
 
 ```
-cd /home/osm/
-    setfacl -R -m u:postgres:rwx /home/osm/
+setfacl -R -m u:postgres:rwx /home/osm/
 ```
