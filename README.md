@@ -248,3 +248,27 @@ Exit from the postgres user:
 ```
 exit
 ```
+
+### Istallation Mapnik & OpenStreetMap Carto
+
+#### Mapnik installation
+
+We need to install the Mapnik library. Mapnik is used to render the OpenStreetMap data into the tiles managed by the Apache web server through renderd and mod_tile.
+
+```
+python3 -c "import mapnik"
+```
+
+#### OpenStreetMap Carto installation
+
+The home of “OpenStreetMap Carto” on the web is https://github.com/gravitystorm/openstreetmap-carto/ and it has it’s own installation instructions at https://github.com/gravitystorm/openstreetmap-carto/blob/master/INSTALL.md although we’ll cover everything that needs to be done here.
+
+Here we’re assuming that we’re storing the stylesheet details in a directory below “/osm/” below the home directory of the “osm” user (or whichever other one you are using)
+
+```
+cd /home/osm/
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+apt-get install --yes nodejs
+git clone https://github.com/gravitystorm/openstreetmap-carto
+npm install -g carto
+```
