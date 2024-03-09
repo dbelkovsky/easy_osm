@@ -73,9 +73,7 @@ sudo apt-get update
 
 sudo apt-get -y upgrade
 
-apt install -y wget software-properties-common dirmngr ca-certificates
-
-apt-transport-https lsb-release curl
+apt install -y wget software-properties-common dirmngr ca-certificates apt-transport-https lsb-release curl
 ```
 
 Add repos and install all packages:
