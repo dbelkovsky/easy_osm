@@ -364,4 +364,10 @@ Control assignment of privileges in the database:
 psql -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO osm;" -d gis
 ```
 
+Exit from the postgres user.
+
+```
+exit
+```
+
 **_Congrats! The database is now ready to use!_**
