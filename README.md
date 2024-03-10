@@ -343,6 +343,7 @@ psql -d gis -f indexes.sql
 ```
 
 **Downloading Shapefile and adding Fonts**
+
 Although most of the data used to create the map is directly from the OpenStreetMap data file that you downloaded above, some shapefiles for things like low-zoom country boundaries are still needed. Also In version v5.6.0 and above of Carto, fonts need to be installed manually:
 
 ```
