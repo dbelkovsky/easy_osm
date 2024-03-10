@@ -306,7 +306,7 @@ sudo -u postgres
 Run the following command to load map stylesheet and map data into the gis database. Replace luxembourg-latest.osm.pbf with your own map data file.
 
 ```
-osm2pgsql -d gis --create --slim -G --hstore --tag-transform-script openstreetmap-carto.lua -C 3200 --number-processes 2 --style openstreetmap-carto.style luxembourg-latest.osm.pbf
+osm2pgsql -d gis --create --slim -G --hstore --tag-transform-script openstreetmap-carto.lua -C 5600 --number-processes 2 --style openstreetmap-carto.style luxembourg-latest.osm.pbf
 ```
 
 where
@@ -317,7 +317,7 @@ where
 - `-G, --multi-geometry`: generate multi-geometry features in postgresql tables.
 - `--hstore`: add tags without column to an additional hstore (key/value) column to PostgreSQL tables
 - `--tag-transform-script`: its supports Lua scripts to rewrite tags before they enter the database.
-- `--style`: specify the location of style file
-- `--number-processes`: number of CPU cores on your server. I have 2.
 - `-C, --cache=NUM`: flag specifies the cache size in MegaBytes. It should be around 70% of the free RAM on your machine. Bigger cache size results in faster import speed. For example, my server has 8GB free RAM, so I can specify -C 5600. Be aware that PostgreSQL will need RAM for shared_buffers. Use this formula to calculate how big the cache size should be: (Total RAM - PostgreSQL shared_buffers) \* 70%
+- `--number-processes`: number of CPU cores on your server. I have 2.
+- `--style`: specify the location of style file
 - Finally, you need to specify the location of map data file.
