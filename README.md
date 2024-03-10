@@ -291,3 +291,33 @@ And grant privelegues to `postgres` user to all files in work folder:
 ```
 setfacl -R -m u:postgres:rwx /home/osm/
 ```
+
+### Import the Map Data to PostgreSQL
+
+To import map data, we need to use osm2pgsql which converts OpenStreetMap data to postGIS-enabled PostgreSQL databases.
+
+Switch to the postgres user and change work directory:
+
+```
+cd /home/osm/openstreetmap-carto/
+sudo -u postgres
+```
+
+Run the following command to load map stylesheet and map data into the gis database. Replace luxembourg-latest.osm.pbf with your own map data file.
+
+```
+osm2pgsql -d gis --create --slim -G --hstore --tag-transform-script openstreetmap-carto.lua -C 3200 --number-processes 2 --style openstreetmap-carto.style luxembourg-latest.osm.pbf
+```
+
+where
+
+- -d gis: select database.
+- --create is default function
+- --slim: run in slim mode rather than normal mode. This option is needed if you want to update the map data using OSM change files (OSC) in the future.
+- --hstore: add tags without column to an additional hstore (key/value) column to PostgreSQL tables
+- --tag-transform-script its supports Lua scripts to rewrite tags before they enter the database.
+- --multi-geometry: generate multi-geometry features in postgresql tables.
+- --style: specify the location of style file
+- --number-processes: number of CPU cores on your server. I have 2.
+- -C flag specifies the cache size in MegaBytes. It should be around 70% of the free RAM on your machine. Bigger cache size results in faster import speed. For example, my server has 8GB free RAM, so I can specify -C 5600. Be aware that PostgreSQL will need RAM for shared_buffers. Use this formula to calculate how big the cache size should be: (Total RAM - PostgreSQL shared_buffers) \* 70%
+- Finally, you need to specify the location of map data file.
