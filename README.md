@@ -319,5 +319,5 @@ where
 - `-G, --multi-geometry`: generate multi-geometry features in postgresql tables.
 - `--style`: specify the location of style file
 - `--number-processes`: number of CPU cores on your server. I have 2.
-- `-C`: flag specifies the cache size in MegaBytes. It should be around 70% of the free RAM on your machine. Bigger cache size results in faster import speed. For example, my server has 8GB free RAM, so I can specify -C 5600. Be aware that PostgreSQL will need RAM for shared_buffers. Use this formula to calculate how big the cache size should be: (Total RAM - PostgreSQL shared_buffers) \* 70%
+- `-C, --cache=NUM`: flag specifies the cache size in MegaBytes. It should be around 70% of the free RAM on your machine. Bigger cache size results in faster import speed. For example, my server has 8GB free RAM, so I can specify -C 5600. Be aware that PostgreSQL will need RAM for shared_buffers. Use this formula to calculate how big the cache size should be: (Total RAM - PostgreSQL shared_buffers) \* 70%
 - Finally, you need to specify the location of map data file.
