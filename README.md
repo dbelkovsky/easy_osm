@@ -314,9 +314,9 @@ where
 - `-d gis`: select database.
 - `--create`: is default function
 - `--slim`: run in slim mode rather than normal mode. This option is needed if you want to update the map data using OSM change files (OSC) in the future.
+- `-G, --multi-geometry`: generate multi-geometry features in postgresql tables.
 - `--hstore`: add tags without column to an additional hstore (key/value) column to PostgreSQL tables
 - `--tag-transform-script`: its supports Lua scripts to rewrite tags before they enter the database.
-- `-G, --multi-geometry`: generate multi-geometry features in postgresql tables.
 - `--style`: specify the location of style file
 - `--number-processes`: number of CPU cores on your server. I have 2.
 - `-C, --cache=NUM`: flag specifies the cache size in MegaBytes. It should be around 70% of the free RAM on your machine. Bigger cache size results in faster import speed. For example, my server has 8GB free RAM, so I can specify -C 5600. Be aware that PostgreSQL will need RAM for shared_buffers. Use this formula to calculate how big the cache size should be: (Total RAM - PostgreSQL shared_buffers) \* 70%
