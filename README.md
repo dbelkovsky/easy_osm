@@ -321,3 +321,44 @@ where
 - `--number-processes`: number of CPU cores on your server. I have 2.
 - `--style`: specify the location of style file
 - Finally, you need to specify the location of map data file.
+
+And you will be able to continue your work. Once the import is complete, grant all privileges of the gis database to the osm user.
+
+```
+psql -c "ALTER DATABASE gis OWNER TO osm;" -d gis
+psql -c "grant all on planet_osm_polygon to osm;" -d gis
+psql -c "grant all on planet_osm_line to osm;" -d gis
+psql -c "grant all on planet_osm_point to osm;" -d gis
+psql -c "grant all on planet_osm_roads to osm;" -d gis
+psql -c "grant all on geometry_columns to osm;" -d gis
+psql -c "grant all on spatial_ref_sys to osm;" -d gis
+```
+
+**Creating indexes**
+
+_Since version v5.3.0, some extra indexes now need to be [applied manually](https://github.com/gravitystorm/openstreetmap-carto/blob/master/CHANGELOG.md#v530---2021-01-28)._
+
+```
+psql -d gis -f indexes.sql
+```
+
+**Downloading Shapefile and adding Fonts**
+Although most of the data used to create the map is directly from the OpenStreetMap data file that you downloaded above, some shapefiles for things like low-zoom country boundaries are still needed. Also In version v5.6.0 and above of Carto, fonts need to be installed manually:
+
+```
+scripts/get-fonts.sh && cripts/get-external-data.py
+```
+
+Then we convert the carto project into something that Mapnik can understand:
+
+```
+carto project.mml >mapnik.xml
+```
+
+Control assignment of privileges in the database:
+
+```
+psql -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO osm;" -d gis
+```
+
+**_Congrats! The database is now ready to use!_**
