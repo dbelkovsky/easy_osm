@@ -350,7 +350,9 @@ Although most of the data used to create the map is directly from the OpenStreet
 scripts/get-fonts.sh && cripts/get-external-data.py
 ```
 
-Then we convert the carto project into something that Mapnik can understand:
+_This is not a quick process and may take quite some time, depending on the size of the map loaded into the database._
+
+Then we convert the carto project into something that **Mapnik** can understand:
 
 ```
 carto project.mml >mapnik.xml
