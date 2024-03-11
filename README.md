@@ -404,3 +404,23 @@ sudo make install
 sudo make install-mod_tile
 sudo ldconfig
 ```
+
+After building and installing the packages, you need to continue configuring the services.
+
+Create mod_tile configuration file for apache2
+
+```
+vi /etc/apache2/conf-available/mod_tile.conf
+```
+
+and past into file following strings
+
+```
+LoadModule tile_module /usr/lib/apache2/modules/mod_tile.so
+```
+
+Save changes and enable Apache2 module mod_tile
+
+```
+sudo a2enconf mod_tile
+```
