@@ -371,3 +371,36 @@ exit
 ```
 
 **_Congrats! The database is now ready to use!_**
+
+## Install Renderd and mod_tile
+
+_Now, we’ll install mod_tile and renderd. “mod_tile” is an Apache module that handles requests for tiles; “renderd” is a daemon that actually renders tiles when “mod_tile” requests them. We’ll use the “switch2osm” branch of https://github.com/SomeoneElseOSM/mod_tile, which is itself forked from https://github.com/openstreetmap/mod_tile, but modified so that it supports Ubuntu 20.04, and with a couple of other changes to work on a standard Ubuntu server rather than one of OSM’s rendering servers._
+
+Go to work directory:
+
+```
+cd /home/osm/
+```
+
+Clone the repo:
+
+```
+git clone -b switch2osm https://github.com/SomeoneElseOSM/mod_tile.git
+```
+
+Change build directory:
+
+```
+cd mod_tile
+```
+
+Run building commands:
+
+```
+./autogen.sh
+./configure
+make
+sudo make install
+sudo make install-mod_tile
+ldconfig
+```
