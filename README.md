@@ -402,5 +402,5 @@ Run building commands:
 make
 sudo make install
 sudo make install-mod_tile
-ldconfig
+sudo ldconfig
 ```
