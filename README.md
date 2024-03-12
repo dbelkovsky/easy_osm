@@ -435,8 +435,8 @@ Create directories:
 mkdir --parents /var/run/renderd /var/lib/mod_tile/
 ```
 
-- _/var/run/renderd this is directory where starting rendering daemon_
-- _/var/lib/mod_tile/ this is the directory for saving generated tiles_
+- _`/var/run/renderd` this is directory where starting rendering daemon_
+- _`/var/lib/mod_tile/` this is the directory for saving generated tiles_
 
 Grant full rights to the directories to `osm` user:
 
