@@ -266,7 +266,7 @@ TILEDIR=/var/lib/mod_tile
 XML=/home/$USER/openstreetmap-carto/mapnik.xml
 HOST=localhost
 TILESIZE=256
-MAXZOOM=20
+MAXZOOM=18
  
 EOF
 

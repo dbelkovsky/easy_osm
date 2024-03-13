@@ -462,10 +462,11 @@ Edit renderd config file.
 sudo vi /etc/renderd.conf
 ```
 
-In the `[renderd]` section, change the number of threads according to the number of CPU cores on your server.
+In the `[renderd]` section, change the number of threads according to the number of CPU cores on your server. And also change `tile_dir` to you custom tile rendering directory:
 
 ```
 num_threads=2
+tile_dir=/var/lib/mod_tile
 ```
 
 Add a `default` layer.
@@ -475,6 +476,9 @@ Add a `default` layer.
 URI=/osm/
 XML=/home/osm/openstreetmap-carto/mapnik.xml
 HOST=tile.your-domain.com
+TILEDIR=/var/lib/mod_tile
+TILESIZE=256
+MAXZOOM=18
 ```
 
 By default, renderd allows a max zoom level of 18. If you need zoom level 19, add the following line in the `[default]` section.
