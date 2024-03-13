@@ -451,7 +451,34 @@ sudo chown osm:osm /var/lib/mod_tile/ -R
 First, create a config file:
 
 ```
-vi /etc/renderd.conf
+sudo touch /etc/renderd.conf
 ```
 
-_You also can download example [file](https://github.com/dbelkovsky/bash_scipts/blob/main/data/renderd.conf) from this repository_
+_You also can download example [file for Ubuntu 20.04](https://github.com/dbelkovsky/bash_scipts/blob/main/data/renderd.conf) from this repository_
+
+Edit renderd config file.
+
+```
+sudo vi /etc/renderd.conf
+```
+
+In the `[renderd]` section, change the number of threads according to the number of CPU cores on your server.
+
+```
+num_threads=2
+```
+
+Add a `default` layer.
+
+```
+[default]
+URI=/osm/
+XML=/home/osm/openstreetmap-carto/mapnik.xml
+HOST=tile.your-domain.com
+```
+
+By default, renderd allows a max zoom level of 18. If you need zoom level 19, add the following line in the `[default]` section.
+
+```
+MAXZOOM=19
+```
