@@ -372,7 +372,9 @@ exit
 
 **_Congrats! The database is now ready to use!_**
 
-## Install Renderd and mod_tile
+## Install Mod_tile and Renderd
+
+### Mod_tile installation
 
 **Making packages**
 
@@ -444,3 +446,12 @@ Grant full rights to the directories to `osm` user:
 sudo chown osm:osm /var/run/renderd/ -R
 sudo chown osm:osm /var/lib/mod_tile/ -R
 ```
+
+**Creating renderd service**
+First, create a config file:
+
+```
+vi /etc/renderd.conf
+```
+
+_You also can download example [file](https://github.com/dbelkovsky/bash_scipts/blob/main/data/renderd.conf) from this repository_
