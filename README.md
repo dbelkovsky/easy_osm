@@ -575,7 +575,10 @@ chmod 755 /etc/init.d/renderd
 
 Copy the renderd.service to systemd derectory
 
+```
 cp /home/osm/mod_tile/debian/renderd.service /lib/systemd/system/
+```
+
 Start service renderd
 
 ```
@@ -592,4 +595,5 @@ Restart renderd to check it!
 
 ```
 systemctl restart renderd
+
 ```
