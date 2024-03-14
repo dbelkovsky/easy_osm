@@ -496,10 +496,8 @@ renderd -f -c /etc/renderd.conf
 
 where
 
-- -f, --foreground
-  Run renderd in the foreground for debugging purposes.
-- -c, --config
-  Set the location of the config file used to configure the various parameters of renderd, like the mapnik style sheet. The default is /etc/renderd.conf
+- `-f, --foreground`: run renderd in the foreground for debugging purposes.
+- `-c, --config`: set the location of the config file used to configure the various parameters of renderd, like the mapnik style sheet. The default is /etc/renderd.conf
 
 Afer start you can see next output in CLI:
 
@@ -596,4 +594,17 @@ Restart renderd to check it!
 ```
 systemctl restart renderd
 
+```
+
+## Apache settings
+
+Edit `/etc/apache2/sites-available/000-default.conf` and insert the following lines between lines `ServerAdmin webmaster@localhost` and `DocumentRoot /var/www/html`
+
+```
+LoadTileConfigFile /etc/renderd.conf
+ModTileRenderdSocketName /var/run/renderd/renderd.sock
+# Timeout before giving up for a tile to be rendered
+ModTileRequestTimeout 0
+# Timeout before giving up for a tile to be rendered that is otherwise missing
+ModTileMissingRequestTimeout 30
 ```
