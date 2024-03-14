@@ -501,4 +501,63 @@ where
 - -c, --config
   Set the location of the config file used to configure the various parameters of renderd, like the mapnik style sheet. The default is /etc/renderd.conf
 
+Afer start you can see next output in CLI:
+
+```
+renderd[5163]: Parsing section renderd
+renderd[5163]: Parsing render section 0
+renderd[5163]: Parsing section mapnik
+renderd[5163]: Parsing section default
+renderd[5163]: config renderd: unix socketname=/var/run/renderd/renderd.sock
+renderd[5163]: config renderd: num_threads=4
+renderd[5163]: config renderd: num_slaves=0
+renderd[5163]: config renderd: tile_dir=/var/lib/mod_tile
+renderd[5163]: config renderd: stats_file=/var/run/renderd/renderd.stats
+renderd[5163]: config mapnik:  plugins_dir=/usr/local/lib/mapnik/input
+renderd[5163]: config mapnik:  font_dir=/usr/share/fonts/truetype/ttf-dejavu
+renderd[5163]: config mapnik:  font_dir_recurse=1
+renderd[5163]: config renderd(0): Active
+renderd[5163]: config renderd(0): unix socketname=/var/run/renderd/renderd.sock
+renderd[5163]: config renderd(0): num_threads=4
+renderd[5163]: config renderd(0): tile_dir=/var/lib/mod_tile
+renderd[5163]: config renderd(0): stats_file=/var/run/renderd/renderd.stats
+renderd[5163]: config map 0:   name(default) file(/usr/local/share/maps/style/OSMBright/OSMBright.xml) uri(/osm_tiles/) htcp() host(localhost)
+renderd[5163]: Initialising unix server socket on /var/run/renderd/renderd.sock
+renderd[5163]: Created server socket 4
+renderd[5163]: Renderd is using mapnik version 2.2.0
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSansCondensed.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSerifCondensed-BoldItalic.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSansMono-Oblique.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSerif-Italic.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSans-Bold.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSansCondensed-Bold.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSerifCondensed.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSerif.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSans-BoldOblique.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSerif-BoldItalic.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSerif-Bold.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSerifCondensed-Bold.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSansCondensed-Oblique.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSansMono-Bold.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSansMono.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSansCondensed-BoldOblique.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSans-ExtraLight.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSerifCondensed-Italic.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSans-Oblique.ttf
+renderd[5163]: DEBUG: Loading font: /usr/share/fonts/truetype/ttf-dejavu/DejaVuSansMono-BoldOblique.ttf
+Running in foreground mode...
+debug: init_storage_backend: initialising file storage backend at: /var/lib/mod_tile
+renderd[5163]: Loading parameterization function for
+debug: init_storage_backend: initialising file storage backend at: /var/lib/mod_tile
+renderd[5163]: Loading parameterization function for
+debug: init_storage_backend: initialising file storage backend at: /var/lib/mod_tile
+renderd[5163]: Loading parameterization function for
+debug: init_storage_backend: initialising file storage backend at: /var/lib/mod_tile
+renderd[5163]: Loading parameterization function for
+renderd[5163]: Starting stats thread
+renderd[5163]: Using web mercator projection settings
+renderd[5163]: Using web mercator projection settingsrenderd[5163]: Using web mercator projection settings
+```
+
 **Now create a renderd systemd service**
