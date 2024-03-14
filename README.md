@@ -448,13 +448,14 @@ sudo chown osm:osm /var/lib/mod_tile/ -R
 ```
 
 **Creating renderd service**
+
 First, create a config file:
 
 ```
 sudo touch /etc/renderd.conf
 ```
 
-_You also can download example [file for Ubuntu 20.04](https://github.com/dbelkovsky/bash_scipts/blob/main/data/renderd.conf) from this repository_
+_You also can download example configurtion file from [my](https://github.com/dbelkovsky/bash_scipts/blob/main/data/renderd.conf) repository or configuration file wiht extended configuration from [this](https://github.com/SomeoneElseOSM/mod_tile/blob/master/etc/renderd/renderd.conf.examples) repository_
 
 Edit renderd config file.
 
@@ -486,3 +487,5 @@ By default, renderd allows a max zoom level of 18. If you need zoom level 19, ad
 ```
 MAXZOOM=19
 ```
+
+Now create a renderd service
