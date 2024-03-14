@@ -455,7 +455,7 @@ First, create a config file:
 sudo touch /etc/renderd.conf
 ```
 
-_You also can download example configurtion file from [my](https://github.com/dbelkovsky/bash_scipts/blob/main/data/renderd.conf) repository or configuration file wiht extended configuration from [this](https://github.com/SomeoneElseOSM/mod_tile/blob/master/etc/renderd/renderd.conf.examples) repository_
+_You also can download example configuration file from [my](https://github.com/dbelkovsky/bash_scipts/blob/main/data/renderd.conf) repository or configuration file wiht extended configuration from [this](https://github.com/SomeoneElseOSM/mod_tile/blob/master/etc/renderd/renderd.conf.examples) repository_
 
 Edit renderd config file.
 
