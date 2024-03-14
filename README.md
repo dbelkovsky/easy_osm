@@ -488,4 +488,17 @@ By default, renderd allows a max zoom level of 18. If you need zoom level 19, ad
 MAXZOOM=19
 ```
 
-Now create a renderd service
+After all the above manipulations, you can start the renderd service manually. To do this you need to run the command:
+
+```
+renderd -f -c /etc/renderd.conf
+```
+
+where
+
+- -f, --foreground
+  Run renderd in the foreground for debugging purposes.
+- -c, --config
+  Set the location of the config file used to configure the various parameters of renderd, like the mapnik style sheet. The default is /etc/renderd.conf
+
+**Now create a renderd systemd service**
