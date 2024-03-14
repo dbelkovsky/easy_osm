@@ -661,7 +661,8 @@ var hash = L.hash(map)
 </html>
 ```
 
-In line `L.tileLayer('http://YOUR_SERVER_IP/osm/{z}/{x}/{y}.png'` type your server IP address or FQDN.
+In line `L.tileLayer('http://YOUR_SERVER_IP/osm/{z}/{x}/{y}.png'`
+type your server IP address or FQDN.
 
 _You can also download [index.html](https://github.com/dbelkovsky/bash_scipts/blob/main/data/index.html) file from it repository._
 
