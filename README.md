@@ -618,7 +618,7 @@ sudo systemctl reload apache2
 sudo systemctl restart apache2
 ```
 
-### Laeflet
+### Leaflet
 
 A tiled web map is also known as a slippy map in OpenStreetMap terminology. There are two free and open-source JavaScript map libraries you can use for your tile server: OpenLayer and `Leaflet`. The advantage of `Leaflet` is that it is simple to use and your map will be mobile-friendly. And in this guide I will use `Leaflet`.
 
@@ -650,7 +650,7 @@ Edit index.html file
 //<![CDATA[
 var map = L.map('map').setView([63, 100], 3);
 
-L.tileLayer('http://YOUR_SERVER_IP\/osm/{z}/{x}/{y}.png', {
+L.tileLayer('http://YOUR_SERVER_IP/osm/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
@@ -660,3 +660,6 @@ var hash = L.hash(map)
 </body>
 </html>
 ```
+
+In line `L.tileLayer('http://YOUR_SERVER_IP/osm/{z}/{x}/{y}.png'` type your server IP address or FQDN.
+_You can also download [index.html](https://github.com/dbelkovsky/bash_scipts/blob/main/data/index.html) file from it repository._
