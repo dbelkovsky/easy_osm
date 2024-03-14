@@ -593,12 +593,11 @@ Restart renderd to check it!
 
 ```
 systemctl restart renderd
-
 ```
 
 ## Apache settings
 
-Edit `/etc/apache2/sites-available/000-default.conf` and insert the following lines between lines `ServerAdmin webmaster@localhost` and `DocumentRoot /var/www/html`
+Edit `/etc/apache2/sites-available/000-default.conf` and insert the following lines between lines `ServerAdmin` and `DocumentRoot`
 
 ```
 LoadTileConfigFile /etc/renderd.conf
@@ -607,4 +606,14 @@ ModTileRenderdSocketName /var/run/renderd/renderd.sock
 ModTileRequestTimeout 0
 # Timeout before giving up for a tile to be rendered that is otherwise missing
 ModTileMissingRequestTimeout 30
+```
+
+_You also can download [index.html](https://github.com/dbelkovsky/bash_scipts/blob/main/data/index.html) file ftom it tepository_
+
+After applying changes twise reload configuration and restart apache2 service
+
+```
+sudo systemctl reload apache2
+sudo systemctl reload apache2
+sudo systemctl restart apache2
 ```
