@@ -608,7 +608,7 @@ ModTileRequestTimeout 0
 ModTileMissingRequestTimeout 30
 ```
 
-_You also can download [index.html](https://github.com/dbelkovsky/bash_scipts/blob/main/data/index.html) file ftom it tepository_
+_You also can download [000-default.conf](https://github.com/dbelkovsky/bash_scipts/blob/main/data/000-default.conf) file ftom it tepository_
 
 After applying changes twise reload configuration and restart apache2 service
 
@@ -616,4 +616,47 @@ After applying changes twise reload configuration and restart apache2 service
 sudo systemctl reload apache2
 sudo systemctl reload apache2
 sudo systemctl restart apache2
+```
+
+### Laeflet
+
+A tiled web map is also known as a slippy map in OpenStreetMap terminology. There are two free and open-source JavaScript map libraries you can use for your tile server: OpenLayer and `Leaflet`. The advantage of `Leaflet` is that it is simple to use and your map will be mobile-friendly. And in this guide I will use `Leaflet`.
+
+Download and decompress Leaflet archive to apache directory
+
+```
+cd /var/www/html/
+wget https://leafletjs-cdn.s3.amazonaws.com/content/leaflet/v1.9.4/leaflet.zip
+unzip leaflet.zip
+```
+
+Edit index.html file
+
+```
+<!DOCTYPE html>
+<html style="height:100%;margin:0;padding:0;">
+<title>Leaflet page with OSM render server selection</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.3/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-hash@0.2.1/leaflet-hash.js"></script>
+<style type="text/css">
+.leaflet-tile-container { pointer-events: auto; }
+</style>
+</head>
+<body style="height:100%;margin:0;padding:0;">
+<div id="map" style="height:100%"></div>
+<script>
+//<![CDATA[
+var map = L.map('map').setView([63, 100], 3);
+
+L.tileLayer('http://YOUR_SERVER_IP\/osm/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+var hash = L.hash(map)
+//]]>
+</script>
+</body>
+</html>
 ```
