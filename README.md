@@ -561,3 +561,35 @@ renderd[5163]: Using web mercator projection settingsrenderd[5163]: Using web me
 ```
 
 **Now create a renderd systemd service**
+
+After building from sources and mod_tile and rendering, the necessary files for configuring the systemd service will appear in the `home/osm/mod_tile/debian` directory.
+
+Edit `/home/osm/mod_tile/debian/renderd.init` file so that “RUNASUSER” is set to the non-root account that you have used before, such as “osm” and change path to “renderd.conf“, then copy it to the system directory.
+
+```
+sed -i "s|\RUNASUSER=renderaccount|RUNASUSER=osm|g" /home/osm/mod_tile/debian/renderd.init
+sed -i "s|\/usr/local/etc/renderd.conf|/etc/renderd.conf|g" /home/osm/mod_tile/debian/renderd.init
+cp /home/osm/mod_tile/debian/renderd.init /etc/init.d/renderd
+chmod 755 /etc/init.d/renderd
+```
+
+Copy the renderd.service to systemd derectory
+
+cp /home/osm/mod_tile/debian/renderd.service /lib/systemd/system/
+Start service renderd
+
+```
+/etc/init.d/renderd start
+```
+
+Enable renderd to autostart
+
+```
+systemctl enable renderd
+```
+
+Restart renderd to check it!
+
+```
+systemctl restart renderd
+```
