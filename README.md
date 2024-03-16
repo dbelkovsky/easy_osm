@@ -677,6 +677,8 @@ https://github.com/SomeoneElseOSM/mod_tile/tree/master
 
 **Congratulations!!!!Now You have a OSM TILE SERVER!!!**
 
+**The following references were used in writing this guide:**
+
 https://switch2osm.org/serving-tiles/anually-building-a-tile-server-20-04-lts/
 https://ircama.github.io/osm-carto-tutorials/tile-server-ubuntu/
 https://osm2pgsql.org/doc/manual.html
