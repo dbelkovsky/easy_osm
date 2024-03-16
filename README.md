@@ -673,4 +673,15 @@ systemctl restart apache2
 systemctl restart renderd
 ```
 
+https://github.com/SomeoneElseOSM/mod_tile/tree/master
+
 **Congratulations!!!!Now You have a OSM TILE SERVER!!!**
+
+https://switch2osm.org/serving-tiles/anually-building-a-tile-server-20-04-lts/
+https://ircama.github.io/osm-carto-tutorials/tile-server-ubuntu/
+https://osm2pgsql.org/doc/manual.html
+https://www.linuxbabe.com/ubuntu/openstreetmap-tile-server-ubuntu-20-04-osm
+https://github.com/SomeoneElseOSM/mod_tile/tree/master
+https://leafletjs.com/
+
+![alt text](screen_4.png)
