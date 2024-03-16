@@ -675,7 +675,7 @@ systemctl restart renderd
 
 **Congratulations!!!!Now You have a OSM TILE SERVER!!!**
 
-## Check it!
+## Installation check
 
 In your web browser address bar, type:
 
@@ -694,6 +694,15 @@ tile.youserver.com
 
 and you will see the **MAP**:
 ![success](https://github.com/dbelkovsky/bash_scipts/blob/main/data/map.png)
+
+Now checking renderd logs:
+
+```
+tail -n 300 /var/log/syslog | grep " TILE "
+```
+
+and you will see
+![success](https://github.com/dbelkovsky/bash_scipts/blob/main/data/renderLOG.png)
 
 **The following references were used in writing this guide:**
 
