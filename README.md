@@ -683,5 +683,3 @@ https://osm2pgsql.org/doc/manual.html
 https://www.linuxbabe.com/ubuntu/openstreetmap-tile-server-ubuntu-20-04-osm
 https://github.com/SomeoneElseOSM/mod_tile/tree/master
 https://leafletjs.com/
-
-![alt text](screen_4.png)
