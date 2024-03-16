@@ -704,7 +704,7 @@ tail -n 300 /var/log/syslog | grep " TILE "
 and you will see
 ![success](https://github.com/dbelkovsky/bash_scipts/blob/main/data/renderLOG.png)
 
-Specially thanks for [cloaksocks](https://github.com/cloaksocks)!!!
+Special thanks for [cloaksocks](https://github.com/cloaksocks)!!!
 
 **The following references were used in writing this guide:**
 
