@@ -684,7 +684,7 @@ tile.your-domain.com/osm/0/0/0.png
 ```
 
 and you will see:
-![success](image.png)
+![success](https://github.com/dbelkovsky/bash_scipts/blob/main/data/image.png)
 
 **The following references were used in writing this guide:**
 
