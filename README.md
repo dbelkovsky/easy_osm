@@ -677,14 +677,23 @@ systemctl restart renderd
 
 ## Check it!
 
-In your web browser address bar, type
+In your web browser address bar, type:
 
 ```
-tile.your-domain.com/osm/0/0/0.png
+tile.youserver.com/osm/0/0/0.png
 ```
 
 and you will see:
 ![success](https://github.com/dbelkovsky/bash_scipts/blob/main/data/image.png)
+
+And the second and direct method is:
+
+```
+tile.youserver.com
+```
+
+and you will see the **MAP**:
+![success](https://github.com/dbelkovsky/bash_scipts/blob/main/data/map.png)
 
 **The following references were used in writing this guide:**
 
