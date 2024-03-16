@@ -679,9 +679,9 @@ https://github.com/SomeoneElseOSM/mod_tile/tree/master
 
 **The following references were used in writing this guide:**
 
-https://switch2osm.org/serving-tiles/anually-building-a-tile-server-20-04-lts/
-https://ircama.github.io/osm-carto-tutorials/tile-server-ubuntu/
-https://osm2pgsql.org/doc/manual.html
-https://www.linuxbabe.com/ubuntu/openstreetmap-tile-server-ubuntu-20-04-osm
-https://github.com/SomeoneElseOSM/mod_tile/tree/master
-https://leafletjs.com/
+- https://switch2osm.org/serving-tiles/manually-building-a-tile-server-20-04-lts/
+- https://ircama.github.io/osm-carto-tutorials/tile-server-ubuntu/
+- https://osm2pgsql.org/doc/manual.html
+- https://www.linuxbabe.com/ubuntu/openstreetmap-tile-server-ubuntu-20-04-osm
+- https://github.com/SomeoneElseOSM/mod_tile/tree/master
+- https://leafletjs.com/
