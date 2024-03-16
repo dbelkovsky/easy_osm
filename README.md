@@ -673,8 +673,6 @@ systemctl restart apache2
 systemctl restart renderd
 ```
 
-https://github.com/SomeoneElseOSM/mod_tile/tree/master
-
 **Congratulations!!!!Now You have a OSM TILE SERVER!!!**
 
 ## Check it!
