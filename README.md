@@ -680,7 +680,7 @@ systemctl restart renderd
 In your web browser address bar, type:
 
 ```
-tile.youserver.com/osm/0/0/0.png
+tile.yourserver.com/osm/0/0/0.png
 ```
 
 and you will see:
@@ -689,7 +689,7 @@ and you will see:
 And the second and direct method is:
 
 ```
-tile.youserver.com
+tile.yourserver.com
 ```
 
 and you will see the **MAP**:
@@ -703,6 +703,8 @@ tail -n 300 /var/log/syslog | grep " TILE "
 
 and you will see
 ![success](https://github.com/dbelkovsky/bash_scipts/blob/main/data/renderLOG.png)
+
+Specially thanks for [cloaksocks](https://github.com/cloaksocks)!!!
 
 **The following references were used in writing this guide:**
 
