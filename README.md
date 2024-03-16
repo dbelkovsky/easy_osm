@@ -677,6 +677,17 @@ https://github.com/SomeoneElseOSM/mod_tile/tree/master
 
 **Congratulations!!!!Now You have a OSM TILE SERVER!!!**
 
+## Check it!
+
+In your web browser address bar, type
+
+```
+tile.your-domain.com/osm/0/0/0.png
+```
+
+and you will see:
+![success](image.png)
+
 **The following references were used in writing this guide:**
 
 - https://switch2osm.org/serving-tiles/manually-building-a-tile-server-20-04-lts/
