@@ -30,7 +30,7 @@ It consists of 5 main components: mod_tile, renderd, mapnik, osm2pgsql and a pos
 
 _The diagram shows an approximate operating principle of server components_
 
-![schema](https://github.com/dbelkovsky/bash_scipts/blob/main/Osm_server.png)
+![schema](https://github.com/dbelkovsky/bash_scipts/blob/main/data/Osm_server.png)
 
 ## Quick start
 
